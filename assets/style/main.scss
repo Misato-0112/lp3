@@ -1,0 +1,782 @@
+@charset "UTF-8";
+/* scss関数群
+------------------------------------------ */
+
+// コンテンツ幅の指定
+$sp_content_width: 390;
+$pc_full_width: 1442;
+$pc_content_width: 1028;
+
+// 本番用か否か？本番用の場合は1にする。0の場合はpxで出力される。(パーフェクトピクセル用)
+$production: 0;
+
+// SP用: vwへの変換
+@function vw($px) {
+    @if $production !=1 {
+        @return $px * 1px;
+    }
+
+    @return calc($px * 100vw / $sp_content_width);
+}
+
+// PC用: vwへの変換
+@function vwp($px) {
+    @if $production !=1 {
+        @return $px * 1px;
+    }
+
+    @return calc($px * 100vw / $pc_full_width);
+}
+
+// pxをremに変換
+@function px2Rem($px) {
+    @if $production !=1 {
+        @return $px * 1px;
+    }
+
+    @return calc($px / 16) * 1rem;
+}
+
+// 下記でmin/max関数をScssの関数ではなくcssの関数として出力するためのラッパー
+@function min($values...) {
+    @return unquote("min(#{$values})");
+}
+
+@function max($values...) {
+    @return unquote("max(#{$values})");
+}
+
+// vwで動作し、pxで頭打ちにする関数
+@function mvw($px) {
+    @if $production !=1 {
+        @return $px * 1px;
+    }
+
+    $value1: calc($px * 100vw / $pc_content_width);
+    $value2: px2Rem($px);
+
+    @if $px>=0 {
+        @return min($value1, $value2);
+    } @else {
+        @return max($value1, $value2);
+    }
+}
+
+// ブレークポイント設定
+$breakpoints: (
+    "sm": "screen and (min-width: 390px)",
+    "md": "screen and (min-width: 768px)",
+    "lg": "screen and (min-width: 1028px)",
+    "xl": "screen and (min-width: 1442px)",
+) !default;
+
+@mixin mq($breakpoint: md) {
+    @media #{map-get($breakpoints, $breakpoint)} {
+        @content;
+    }
+}
+
+// 字間トラッキングのmixin
+@mixin tracking($tracking) {
+    letter-spacing: ($tracking / 1000) + em;
+}
+
+// 行間のmixin
+@mixin font-lin($fontsize, $lin) {
+    //$fontsizeの数値の単位はpx
+    line-height: $lin / $fontsize;
+}
+
+/* 共通------------------ */
+/* スムーススクロール */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: px2Rem(10);
+}
+
+/* カラー変数 */
+$color-white: #fff;
+$color-text: #333;
+$color-pink: #fa7da3;
+$color-green: #49c43d;
+$color-yellow: #fffd7a;
+$color-blue: #50bfff;
+$color-brown: #4d2b1b;
+$color-campaign: #fffedd;
+
+/* リセット */
+a {
+    color: $color-text;
+    text-decoration: none;
+    // リンクホバー時
+    &:hover {
+        opacity: 0.6;
+    }
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: bottom;
+}
+
+// コンテナー横幅と左右の余白
+.w-container {
+    max-width: vw($sp_content_width);
+    height: 100%;
+    margin-inline: auto;
+    @include mq(md) {
+        max-width: vwp($pc_content_width);
+    }
+}
+
+/* bodyフォント・ボックスサイジング*/
+body {
+    box-sizing: border-box;
+    font-size: vw(16);
+    line-height: 1.5;
+    color: $color-text;
+    font-family: "Noto Sans JP", sans-serif;
+}
+
+$font-outfit: "Outfit", sans-serif;
+
+/*セクション共通*/
+
+/*セクション*/
+.section {
+    &__title {
+        margin-left: vw(3);
+        &--top {
+            font-size: vw(18);
+            font-weight: 500;
+            color: $color-brown;
+            @include font-lin(18, 28);
+            @include tracking(40);
+            text-align: center;
+            margin-bottom: vw(15);
+        }
+
+        &--bottom {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            font-size: vw(32);
+            font-weight: 700;
+            color: $color-pink;
+            @include font-lin(32, 28);
+            letter-spacing: 0.05em;
+            & p {
+                margin-left: vw(2);
+            }
+            & img {
+                position: absolute;
+                bottom: vw(-10);
+                width: vw(38);
+                vertical-align: middle;
+                &:first-child {
+                    left: vw(25);
+                }
+                &:last-child {
+                    right: vw(29);
+                }
+            }
+        }
+    }
+}
+
+/*ラベルボックス*/
+.label-box {
+    border: solid vw(1) $color-pink;
+    border-radius: vw(10);
+    text-align: center;
+
+    &__title {
+        background-color: $color-pink;
+        color: $color-white;
+        padding-block: vw(9);
+        border-top-left-radius: vw(10);
+        border-top-right-radius: vw(10);
+        font-size: vw(18);
+    }
+
+    &__content {
+        font-size: vw(14);
+        @include tracking(40);
+        font-feature-settings: "palt";
+        text-align: left;
+        background-color: $color-white;
+        padding-block: vw(15);
+        padding-inline: vw(20);
+        border-bottom-left-radius: vw(10);
+        border-bottom-right-radius: vw(10);
+    }
+}
+
+/*ヘッダー------------------*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: vw(60);
+    z-index: 100;
+    background-color: $color-white;
+    @include mq(md) {
+        height: vwp(90);
+    }
+
+    &__container {
+        display: flex;
+        justify-content: space-between;
+        padding-inline: vw(9);
+        @include mq(md) {
+            padding-inline: 0;
+        }
+    }
+
+    &__logo {
+        display: block;
+        width: vw(72);
+        padding-left: vw(4);
+        @include mq(md) {
+            width: vwp(97);
+        }
+    }
+}
+
+.header-button-container {
+    display: grid;
+    grid-auto-flow: column;
+    place-items: center;
+    gap: vw(10);
+    @include mq(md) {
+        gap: vwp(21);
+        margin-right: vwp(3);
+    }
+
+    &__button {
+        display: inline-block;
+        height: vw(31);
+        color: $color-white;
+        font-size: vw(12);
+        text-align: center;
+        border-radius: vw(15.5);
+        background-color: $color-pink;
+        padding: vw(9) vw(5);
+        @include tracking(40);
+        line-height: 1;
+        margin-bottom: vw(1);
+        @include mq(md) {
+            height: vwp(50.36);
+            font-size: vwp(21.12);
+            border-radius: vwp(25.18);
+            padding: vwp(15) vwp(5);
+            margin-bottom: vwp(-1);
+        }
+        &--small {
+            font-size: vw(10);
+            @include mq(md) {
+                font-size: vwp(16.74);
+            }
+        }
+        &--right-arrow {
+            width: vw(6);
+            margin-left: vw(3);
+            @include mq(md) {
+                width: vwp(11);
+                margin-left: vwp(4);
+            }
+        }
+    }
+
+    & li:nth-of-type(1) a {
+        width: vw(107);
+        background-color: $color-pink;
+        @include mq(md) {
+            width: vwp(189.01);
+        }
+    }
+    & li:nth-of-type(2) a {
+        width: vw(173.77);
+        background-color: $color-green;
+        @include mq(md) {
+            width: vwp(295.49);
+        }
+    }
+}
+
+/*メインビジュアル------------------*/
+.main-visual {
+    margin-top: vw(60);
+    width: 100%;
+    height: vw(314);
+    background-color: $color-pink;
+    background-image: url("/assets/image/woman_sp.png");
+    background-size: 54.5%;
+    background-position: vw(5) bottom;
+
+    @include mq(md) {
+        margin-top: vwp(90);
+        height: vwp(614);
+        background-image: url("/assets/image/woman_pc.png");
+        background-size: 34.2%;
+        background-position: vwp(204) bottom;
+    }
+
+    &__container {
+        color: $color-white;
+    }
+
+    &__title {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-left: vw(19);
+        @include mq(md) {
+            margin-left: vwp(47);
+        }
+
+        &--left {
+            text-align: center;
+            margin-top: vw(18);
+            @include mq(md) {
+                margin-top: vwp(18);
+            }
+
+            & h1 {
+                font-size: vw(42);
+                line-height: 1;
+                font-weight: 400;
+                @include mq(md) {
+                    font-size: vwp(122.15);
+                    text-shadow: 0 0 vwp(35) $color-pink, 0 0 vwp(35) $color-pink, 0 0 vwp(35) $color-pink, 0 0 vwp(35) $color-pink, 0 0 vwp(35) $color-pink, 0 0 vwp(35) $color-pink;
+                    margin-top: vwp(6);
+                }
+            }
+            & p {
+                font-size: vw(18);
+                margin-top: vw(5);
+                @include mq(md) {
+                    font-size: vwp(36);
+                    text-align: right;
+                    margin-top: vwp(10);
+                    margin-right: vwp(-30);
+                }
+            }
+        }
+
+        &--bottom {
+            font-family: $font-outfit;
+            font-size: vw(14);
+            text-align: end;
+            margin-right: vw(25);
+            margin-top: vw(6);
+            @include mq(md) {
+                font-size: vwp(26.5);
+                margin-right: vwp(93);
+                margin-top: vwp(5);
+            }
+            & span {
+                font-size: vw(9);
+                @include mq(md) {
+                    font-size: vwp(17);
+                }
+            }
+        }
+    }
+
+    &__badge {
+        display: grid;
+        width: 100%;
+        grid-auto-flow: row;
+        justify-content: flex-end;
+        gap: vw(12);
+        padding-right: vw(26);
+        margin-top: vw(21);
+        @include mq(md) {
+            gap: vwp(20);
+            padding-right: vwp(30);
+            margin-top: vwp(45);
+        }
+        & li {
+            width: vw(133);
+            height: vw(35);
+            font-size: vw(18);
+            text-align: center;
+            border: solid vw(1) $color-white;
+            margin-block: auto;
+            @include mq(md) {
+                width: vwp(423);
+                height: vwp(69);
+                font-size: vwp(28);
+            }
+        }
+        & p {
+            line-height: vw(31);
+            @include mq(md) {
+                line-height: vwp(67);
+            }
+        }
+    }
+}
+
+.main-visual-title-right-badge-group {
+    display: flex;
+    width: vw(188);
+    height: vw(107);
+    align-items: flex-start;
+    justify-content: flex-start;
+    background-color: rgba(255, 255, 255, 0.3);
+    box-shadow: vw(3.536) vw(3.536) vw(0) vw(0) rgba(0, 0, 0, calc(0.25 * 0.3));
+    padding-block: vw(23);
+    padding-left: vw(27);
+    @include mq(md) {
+        width: vwp(423);
+        height: vwp(222);
+        grid-template-columns: vwp(108) auto;
+        gap: vwp(0);
+        padding-block: vwp(44);
+        padding-left: vwp(59);
+        margin-right: vwp(30);
+    }
+
+    &__left {
+        display: flex;
+        flex-direction: column;
+        &--now {
+            width: vw(47);
+            height: vw(23);
+            font-size: vw(13);
+            font-weight: 700;
+            color: $color-pink;
+            text-align: center;
+            background-color: $color-white;
+            margin-top: vw(2);
+            @include mq(md) {
+                width: vwp(105.76);
+                height: vwp(51.65);
+                font-size: vwp(29.25);
+                padding-top: vwp(3);
+                margin-top: vwp(2);
+            }
+        }
+        &--first {
+            font-size: vw(24);
+            font-weight: 700;
+            margin-top: vw(2);
+            @include mq(md) {
+                font-size: vwp(54);
+                margin-top: vwp(6);
+            }
+        }
+    }
+
+    &__right {
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        color: $color-yellow;
+        padding-left: vw(13);
+        @include mq(md) {
+            padding-left: vwp(29);
+        }
+        & p {
+            font-size: vw(72);
+            line-height: 0.7;
+            @include mq(md) {
+                font-size: vwp(160);
+                letter-spacing: 0.04em;
+                line-height: 0.7;
+            }
+        }
+        & span {
+            font-size: vw(36);
+            @include mq(md) {
+                font-size: vwp(81);
+            }
+        }
+    }
+}
+
+/*キャンペーン------------------*/
+.campaign {
+    background-color: $color-campaign;
+
+    &__container {
+        text-align: center;
+        padding: vw(19) vw(19) vw(16);
+        @include mq(md) {
+            padding: vwp(38) vwp(19) vwp(23);
+        }
+    }
+
+    &__top {
+        display: inline-block;
+        position: relative;
+        font-size: vw(21);
+        color: $color-pink;
+        margin-bottom: vw(10);
+        margin-left: vw(2);
+        @include mq(md) {
+            font-size: vwp(34);
+            margin-bottom: vwp(18);
+        }
+        & span {
+            margin-left: vw(2);
+            @include mq(md) {
+                margin-left: vwp(13);
+            }
+        }
+        &::before {
+            position: absolute;
+            bottom: vw(2);
+            left: vw(-15);
+            content: "";
+            display: inline-block;
+            width: vw(2);
+            height: vw(27);
+            background-color: $color-pink;
+            transform: rotate(-30deg);
+            @include mq(md) {
+                left: vwp(-20);
+                height: vwp(43);
+            }
+        }
+        &::after {
+            position: absolute;
+            bottom: vw(2);
+            right: vw(-15);
+            content: "";
+            display: inline-block;
+            width: vw(2);
+            height: vw(27);
+            background-color: $color-pink;
+            transform: rotate(30deg);
+            @include mq(md) {
+                right: vwp(-23);
+                height: vwp(43);
+            }
+        }
+    }
+
+    &__middle {
+        &.label-box {
+            margin-left: vw(2);
+            @include mq(md) {
+                width: vwp(550);
+                margin-inline: auto;
+            }
+            &__title {
+                font-size: vw(21);
+                line-height: 1;
+                padding-top: vw(3);
+                padding-bottom: vw(7);
+                @include mq(md) {
+                    font-size: vwp(32);
+                    padding-bottom: vwp(11);
+                }
+            }
+            &__content {
+                padding-block: vw(20);
+                font-size: vw(27);
+                text-align: center;
+                color: $color-pink;
+                line-height: 1;
+                @include tracking(0);
+                font-feature-settings: normal;
+                padding-top: vw(7);
+                padding-bottom: vw(11);
+                @include mq(md) {
+                    font-size: vwp(43.67);
+                    padding-top: vwp(10);
+                    padding-bottom: vwp(21);
+                }
+                & p {
+                    padding-left: vw(11);
+                    @include mq(md) {
+                        padding-left: vwp(19);
+                    }
+                }
+                & span {
+                    font-size: vw(42);
+                    font-weight: 700;
+                    @include mq(md) {
+                        font-size: vwp(67.93);
+                    }
+                }
+            }
+        }
+    }
+
+    &__bottom {
+        font-size: vw(10);
+        letter-spacing: 0.005em;
+        margin-top: vw(7);
+        @include mq(md) {
+            font-size: vwp(14);
+            margin-top: vwp(17);
+        }
+    }
+}
+
+/*カウンセリング------------------*/
+.counseling {
+    &__container {
+        text-align: center;
+        padding: vw(13) vw(20) vw(30);
+        @include mq(md) {
+            width: vwp(570);
+            padding: vwp(52) 0 vwp(47);
+        }
+    }
+
+    &__title {
+        font-size: vw(21);
+        font-weight: 600;
+        @include tracking(100);
+        color: $color-pink;
+        margin-bottom: vw(8);
+        margin-left: vw(10);
+        @include mq(md) {
+            font-size: vwp(34);
+            margin-bottom: vwp(13);
+            margin-left: vwp(14);
+        }
+    }
+
+    &__button {
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: vw(80);
+        background-color: $color-green;
+        color: $color-white;
+        font-size: vw(21);
+        font-weight: 700;
+        @include font-lin(21, 28);
+        @include tracking(100);
+        border-radius: vw(40);
+        padding-block: vw(11);
+        padding-left: vw(70);
+        margin: auto;
+        @include mq(md) {
+            width: vwp(570);
+            height: vwp(130);
+            font-size: vwp(34);
+            border-radius: vwp(65.05);
+            padding-block: vwp(17);
+            padding-left: vwp(116);
+        }
+
+        & p {
+            width: vw(210);
+            @include mq(md) {
+                width: vwp(340);
+            }
+        }
+        &--br {
+            display: inline-block;
+        }
+        &--right-arrow {
+            position: absolute;
+            right: vw(32);
+            top: calc(50% - vw(10));
+            @include mq(md) {
+                width: vwp(20);
+                right: vwp(50);
+                top: calc(50% - vw(16));
+            }
+        }
+    }
+}
+
+/*トライアル------------------*/
+.trial {
+    &__container {
+        padding: 0 vw(20) vw(35);
+        @include mq(md) {
+            width: vwp(570);
+            padding: 0 0 vwp(51);
+        }
+    }
+
+    &__title {
+        font-size: vw(17);
+        font-weight: 600;
+        color: $color-blue;
+        @include font-lin(17, 28);
+        @include tracking(100);
+        text-align: center;
+        border-top: $color-blue vw(1) solid;
+        border-bottom: $color-blue vw(1) solid;
+        padding-block: vw(5.5);
+        margin-bottom: vw(11);
+        @include mq(md) {
+            font-size: vwp(28);
+            border-top: $color-blue vw(2) solid;
+            border-bottom: $color-blue vw(2) solid;
+            padding-top: vwp(6.5);
+            padding-bottom: vwp(11);
+            margin-bottom: vwp(16);
+        }
+    }
+    &__content {
+        font-size: vw(14);
+        letter-spacing: -0.007em;
+        margin-left: vw(2);
+        @include mq(md) {
+            font-size: vwp(22.86);
+            letter-spacing: -0.01em;
+            margin-left: 0;
+        }
+        & li {
+            margin-bottom: vw(3);
+            @include mq(md) {
+                margin-bottom: vwp(5);
+            }
+        }
+        &--small {
+            font-size: vw(11);
+            @include mq(md) {
+                font-size: vwp(17.96);
+            }
+        }
+    }
+}
+
+/*3つのポイント------------------*/
+.point {
+    &__container {
+        padding: vw(31) vw(20) vw(30);
+        @include mq(md) {
+            width: vwp(570);
+            padding: vwp(52) 0 vwp(47);
+        }
+    }
+    &__title {
+        &--top {
+            display: flex;
+            justify-content: center;
+            & img {
+                width: vw(197);
+                vertical-align: middle;
+                padding-top: vw(4);
+            }
+            & p {
+                padding-left: vw(3);
+            }
+        }
+    }
+}
+
+.point-item-group {
+    padding-block: vw(32);
+}
+
+/*コース------------------*/
