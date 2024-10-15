@@ -740,6 +740,7 @@ $font-outfit: "Outfit", sans-serif;
             display: inline-block;
         }
         &-right-arrow {
+            width: vw(12);
             position: absolute;
             right: vw(32);
             top: calc(50% - vw(10));
@@ -961,6 +962,9 @@ $font-outfit: "Outfit", sans-serif;
                 &-text {
                     @include tracking(0);
                     padding-inline: vw(9);
+                    @include mq() {
+                        padding-inline: mvw(8);
+                    }
                 }
                 &-subtitle {
                     font-size: vw(23);
@@ -978,9 +982,9 @@ $font-outfit: "Outfit", sans-serif;
                 &-full {
                     text-align: center;
                     &-image {
-                        max-width: vw(312);
+                        width: vw(312);
                         @include mq() {
-                            max-width: mvw(558);
+                            width: mvw(558);
                             margin-left: mvw(28);
                         }
                     }
@@ -1010,9 +1014,9 @@ $font-outfit: "Outfit", sans-serif;
                         max-width: vw(100);
                     }
                     &-image {
-                        max-width: vw(100);
+                        width: 100%;
                         @include mq() {
-                            max-width: mvw(100);
+                            width: 100%;
                         }
                     }
                     &-name {
@@ -1315,7 +1319,7 @@ $font-outfit: "Outfit", sans-serif;
 
 /*フッター------------------*/
 .footer {
-    width: 100vw;
+    width: 100%;
     height: vw(64);
     background-color: $color-pink;
     @include mq() {
