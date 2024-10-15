@@ -288,6 +288,7 @@ $font-outfit: "Outfit", sans-serif;
     background-color: $color-white;
     @include mq() {
         height: mvw(92);
+        padding-inline: mvw(20);
     }
     &__container {
         display: flex;
