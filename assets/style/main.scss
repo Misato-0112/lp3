@@ -890,6 +890,13 @@ $font-outfit: "Outfit", sans-serif;
                 @include mq() {
                     margin-bottom: mvw(1);
                 }
+                &__title-text {
+                    font-size: vw(18);
+                    font-weight: 400;
+                    @include mq() {
+                        font-size: mvw(28);
+                    }
+                }
                 &__content {
                     &-text {
                         font-feature-settings: "palt";
@@ -1223,6 +1230,14 @@ $font-outfit: "Outfit", sans-serif;
 }
 
 /*swiperスライド*/
+
+// :root {
+//     --swiper-pagination-bottom: vw(5);
+//     @include mq() {
+//         --swiper-pagination-bottom: mvw(18);
+//     }
+// }
+
 .swiper {
     width: 100%;
     &-button-next,
@@ -1231,11 +1246,11 @@ $font-outfit: "Outfit", sans-serif;
     }
     &-pagination {
         position: absolute;
-        bottom: vw(5) !important;
+        // bottom: vw(5) !important;
         z-index: 10;
-        @include mq() {
-            bottom: mvw(18) !important;
-        }
+        // @include mq() {
+        // bottom: mvw(18) !important;
+        // }
 
         &-bullets {
             font-size: 0;
@@ -1254,6 +1269,16 @@ $font-outfit: "Outfit", sans-serif;
                 background-color: $color-pink;
             }
         }
+    }
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    bottom: vw(5);
+    @include mq() {
+        bottom: mvw(18);
     }
 }
 

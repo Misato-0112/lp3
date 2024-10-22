@@ -889,6 +889,15 @@ body {
     margin-bottom: min(0.0970873786vw, 0.0625rem);
   }
 }
+.point__item-one.label-box__title-text {
+  font-size: 4.6153846154vw;
+  font-weight: 400;
+}
+@media screen and (min-width: 768px) {
+  .point__item-one.label-box__title-text {
+    font-size: min(2.7184466019vw, 1.75rem);
+  }
+}
 .point__item-one.label-box__content-text {
   font-feature-settings: "palt";
 }
@@ -1275,13 +1284,7 @@ body {
 }
 .swiper-pagination {
   position: absolute;
-  bottom: 1.2820512821vw !important;
   z-index: 10;
-}
-@media screen and (min-width: 768px) {
-  .swiper-pagination {
-    bottom: min(1.7475728155vw, 1.125rem) !important;
-  }
 }
 .swiper-pagination-bullets {
   font-size: 0;
@@ -1301,6 +1304,21 @@ body {
 }
 .swiper-pagination-bullet-active {
   background-color: #fa7da3;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 1.2820512821vw;
+}
+@media screen and (min-width: 768px) {
+  .swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+    bottom: min(1.7475728155vw, 1.125rem);
+  }
 }
 
 .voices__swiper-item.label-box {
