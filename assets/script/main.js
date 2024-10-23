@@ -23,4 +23,3 @@ const swiper = new Swiper(".swiper", {
         },
     },
 });
-7;
