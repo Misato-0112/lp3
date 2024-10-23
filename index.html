@@ -35,20 +35,22 @@
             <a href="/" class="header__logo">
                 <img class="header__logo-image" src="/assets/image/header_logo.svg" alt="KIRAMEKI BEAUTY LABO">
             </a>
-            <ul class="header__button">
-                <li>
-                    <a href="/contact/" class="header__button-item header__button-item--pink">
-                        お問い合わせ
-                        <img class="header__button-item-arrow" src="/assets/image/right_arrow.svg" alt="">
-                    </a>
-                </li>
-                <li>
-                    <a href="/reservation/" class="header__button-item header__button-item--green">
-                        カウンセリング予約<span class="header__button-item-small">(無料)</span>
-                        <img class="header__button-item-arrow" src="/assets/image/right_arrow.svg" alt="">
-                    </a>
-                </li>
-            </ul>
+            <nav class="header__menu">
+                <ul class="header__button">
+                    <li>
+                        <a href="/contact/" class="header__button-item header__button-item--pink">
+                            お問い合わせ
+                            <img class="header__button-item-arrow" src="/assets/image/right_arrow.svg" alt="">
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/reservation/" class="header__button-item header__button-item--green">
+                            カウンセリング予約<span class="header__button-item-small">(無料)</span>
+                            <img class="header__button-item-arrow" src="/assets/image/right_arrow.svg" alt="">
+                        </a>
+                    </li>
+                </ul>
+            </nav>
         </div>
     </header>
     <main>
@@ -91,12 +93,12 @@
         <div class="campaign">
             <div class="campaign__container w-container">
                 <p class="campaign__top">今だけ<span>!</span></p>
-                <div class="campaign__middle label-box">
-                    <div class="campaign__middle label-box__title">
+                <div class="campaign-label-box label-box">
+                    <div class="campaign-label-box__title label-box__title">
                         <p>フェイシャルコース</p>
                     </div>
-                    <div class="campaign__middle label-box__content">
-                        <p class="campaign__middle label-box__content-text"><span>3</span>回プレゼント！</p>
+                    <div class="campaign-label-box__content label-box__content">
+                        <p class="campaign-label-box__content-text label-box__content-text"><span>3</span>回プレゼント！</p>
                     </div>
                 </div>
                 <p class="campaign__bottom">クレンジング/洗顔/フェイスヒーリング/ 整肌</p>
@@ -135,107 +137,149 @@
         <section class="point">
             <div class="point__container w-container">
                 <div class="point__title section__title">
-                    <div class="point__title-top section__title-sub"><img
-                            class="point__title-top section__title-sub-image"
-                            src="/assets/image/Kirameki_Beauty_Labo_logo.svg" alt="Kirameki Beauty Labo">
-                        <p class="point__title-top section__title-sub-text">が選ばれる</p>
+                    <div class="point__title-sub section__title-sub"><img
+                            class="point__title-sub-image section__title-sub-image"
+                            src="/assets/image/kirameki_beauty_labo_logo.svg" alt="Kirameki Beauty Labo">
+                        <p class="point__title-sub-text section__title-sub-text">が選ばれる</p>
                     </div>
-                    <div class="point__title-bottom section__title-main">
-                        <h2 class="point__title-bottom section__title-main-text">3つのポイント</h2>
+                    <div class="point__title-main section__title-main">
+                        <h2 class="point__title-main-text section__title-main-text">3つのポイント</h2>
                     </div>
                 </div>
-                <ul class="point__item">
+                <ol class="point__item">
                     <!-- ポイント1 -->
-                    <li class="point__item-one label-box">
-                        <div class="point__item-one label-box__title">
-                            <h3 class="point__item-one label-box__title-text">POINT1 ｜ 通い放題</h3>
+                    <li class="point-label-box point-label-box--one label-box">
+                        <div class="point-label-box__title point-label-box__title--one label-box__title">
+                            <h3
+                                class="point-label-box__title-text point-label-box__title-text--one label-box__title-text">
+                                POINT1 ｜ 通い放題</h3>
                         </div>
-                        <div class="point__item-one label-box__content">
-                            <p class="point__item-one label-box__content-text">納得いくまで何度でも、追加料金なく安心して通っていただけます。</p>
-                            <ul class="point__item-one label-box__content-list">
-                                <li class="point__item-one label-box__content-list-item">
+                        <div class="point-label-box__content point-label-box__content--one label-box__content">
+                            <p
+                                class="point-label-box__content-text point-label-box__content-text--one label-box__content-text">
+                                納得いくまで何度でも、追加料金なく安心して通っていただけます。</p>
+                            <ul
+                                class="point-label-box__content-list point-label-box__content-list--one label-box__content-list">
+                                <li
+                                    class="point-label-box__content-list-item point-label-box__content-list-item--one label-box__content-list-item">
                                     <div
-                                        class="point__item-one label-box__content-list-logo label-box__content-list-logo--kbl">
-                                        <img class="point__item-one label-box__content-list-name"
+                                        class="point-label-box__content-list-logo point-label-box__content-list-logo--kbl label-box__content-list-logo">
+                                        <img class="point-label-box__content-list-name point-label-box__content-list-name--kbl label-box__content-list-name"
                                             src="/assets/image/header_logo.svg" alt="KBL Kirameki Beauty Labo">
                                     </div>
-                                    <p class="point__item-one label-box__content-list-description">来店1回で全身1回</p>
+                                    <p
+                                        class="point-label-box__content-list-description point-label-box__content-list-description--one label-box__content-list-description">
+                                        来店1回で全身1回</p>
                                 </li>
-                                <li class="point__item-one label-box__content-list-item">
+                                <li
+                                    class="point-label-box__content-list-item point-label-box__content-list-item--one label-box__content-list-item">
                                     <div
-                                        class="point__item-one label-box__content-list-logo label-box__content-list-logo--a-salon">
-                                        <p class="point__item-one label-box__content-list-name">Aサロン</p>
+                                        class="point-label-box__content-list-logo point-label-box__content-list-logo--a-salon label-box__content-list-logo">
+                                        <p
+                                            class="point-label-box__content-list-name point-label-box__content-list-name--one label-box__content-list-name">
+                                            Aサロン</p>
                                     </div>
-                                    <p class="point__item-one label-box__content-list-description">来店3回で全身1回</p>
+                                    <p
+                                        class="point-label-box__content-list-description point-label-box__content-list-description--one label-box__content-list-description">
+                                        来店3回で全身1回</p>
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <!-- ポイント2 -->
-                    <li class="point__item-two label-box">
-                        <div class="point__item-two label-box__title">
-                            <h3 class="point__item-one label-box__title-text">POINT2 ｜ プランが選べる</h3>
+                    <li class="point-label-box point-label-box--two label-box">
+                        <div class="point-label-box__title point-label-box__title--two label-box__title">
+                            <h3
+                                class="point-label-box__title-text point-label-box__title-text--two label-box__title-text">
+                                POINT2 ｜ プランが選べる</h3>
                         </div>
-                        <div class="point__item-two label-box__content">
-                            <p class="point__item-two label-box__content-text">「全身プラン」と、施術部位を選べる「部分脱毛プラン」から自由にお選びいただけます。
+                        <div class="point-label-box__content point-label-box__content--two label-box__content">
+                            <p
+                                class="point-label-box__content-text point-label-box__content-text--two label-box__content-text">
+                                「全身プラン」と、施術部位を選べる「部分脱毛プラン」から自由にお選びいただけます。
                             </p>
-                            <div class="point__item-two label-box__content-full">
-                                <h4 class="point__item-two label-box__content-subtitle">全身プラン</h4>
+                            <div class="point-label-box__content-full">
+                                <h4 class="point-label-box__content-subtitle">
+                                    全身プラン</h4>
                                 <picture>
                                     <source media="(max-width: 767px)" srcset="/assets/image/point_full_sp.png">
-                                    <img class="point__item-two label-box__content-full-image"
+                                    <img class="point-label-box__content-full-image"
                                         src="/assets/image/point_full_pc.png"
                                         alt="おでこ 頬 フェイスライン 鼻下 あご ワキ へそ周り 手指甲 足指甲 Vライン Iライン ヒザ うなじ 背中 ヒップ Oライン">
                                 </picture>
                             </div>
-                            <div class="point__item-two label-box__content-parts">
-                                <h4 class="point__item-two label-box__content-subtitle">部分脱毛プラン</h4>
-                                <div class="point__item-two label-box__content-parts-list">
-                                    <div class="point__item-two label-box__content-parts-item">
-                                        <img class="point__item-two label-box__content-parts-image"
+                            <div class="point-label-box__content-parts">
+                                <h4 class="point-label-box__content-subtitle">
+                                    部分脱毛プラン</h4>
+                                <div
+                                    class="point-label-box__content-parts-list point-label-box__content-parts-list--two label-box__content-parts-list">
+                                    <div
+                                        class="point-label-box__content-parts-item point-label-box__content-parts-item--two label-box__content-parts-item">
+                                        <img class="point-label-box__content-parts-image point-label-box__content-parts-image--two label-box__content-parts-image"
                                             src="/assets/image/point_parts_01.png" alt="">
-                                        <p class="point__item-two label-box__content-parts-name">うなじ</p>
+                                        <p
+                                            class="point-label-box__content-parts-name point-label-box__content-parts-name--two label-box__content-parts-name">
+                                            うなじ</p>
                                     </div>
-                                    <div class="point__item-two label-box__content-parts-item">
-                                        <img class="point__item-two label-box__content-parts-image"
+                                    <div
+                                        class="point-label-box__content-parts-item point-label-box__content-parts-item--two label-box__content-parts-item">
+                                        <img class="point-label-box__content-parts-image point-label-box__content-parts-image--two label-box__content-parts-image"
                                             src="/assets/image/point_parts_02.png" alt="">
-                                        <p class="point__item-two label-box__content-parts-name">ワキ</p>
+                                        <p
+                                            class="point-label-box__content-parts-name point-label-box__content-parts-name--two label-box__content-parts-name">
+                                            ワキ</p>
                                     </div>
-                                    <div class="point__item-two label-box__content-parts-item">
-                                        <img class="point__item-two label-box__content-parts-image"
+                                    <div
+                                        class="point-label-box__content-parts-item point-label-box__content-parts-item--two label-box__content-parts-item">
+                                        <img class="point-label-box__content-parts-image point-label-box__content-parts-image--two label-box__content-parts-image"
                                             src="/assets/image/point_parts_03.png" alt="">
-                                        <p class="point__item-two label-box__content-parts-name">Oライン</p>
+                                        <p
+                                            class="point-label-box__content-parts-name point-label-box__content-parts-name--two label-box__content-parts-name">
+                                            Oライン</p>
                                     </div>
-                                    <div class="point__item-two label-box__content-parts-item">
-                                        <img class="point__item-two label-box__content-parts-image"
+                                    <div
+                                        class="point-label-box__content-parts-item point-label-box__content-parts-item--two label-box__content-parts-item">
+                                        <img class="point-label-box__content-parts-image point-label-box__content-parts-image--two label-box__content-parts-image"
                                             src="/assets/image/point_parts_04.png" alt="">
-                                        <p class="point__item-two label-box__content-parts-name">おでこ</p>
+                                        <p
+                                            class="point-label-box__content-parts-name point-label-box__content-parts-name--two label-box__content-parts-name">
+                                            おでこ</p>
                                     </div>
-                                    <div class="point__item-two label-box__content-parts-item">
-                                        <img class="point__item-two label-box__content-parts-image"
+                                    <div
+                                        class="point-label-box__content-parts-item point-label-box__content-parts-item--two label-box__content-parts-item">
+                                        <img class="point-label-box__content-parts-image point-label-box__content-parts-image--two label-box__content-parts-image"
                                             src="/assets/image/point_parts_05.png" alt="">
-                                        <p class="point__item-two label-box__content-parts-name">あご</p>
+                                        <p
+                                            class="point-label-box__content-parts-name point-label-box__content-parts-name--two label-box__content-parts-name">
+                                            あご</p>
                                     </div>
-                                    <div class="point__item-two label-box__content-parts-item">
-                                        <img class="point__item-two label-box__content-parts-image"
+                                    <div
+                                        class="point-label-box__content-parts-item point-label-box__content-parts-item--two label-box__content-parts-item">
+                                        <img class="point-label-box__content-parts-image point-label-box__content-parts-image--two label-box__content-parts-image"
                                             src="/assets/image/point_parts_06.png" alt="">
-                                        <p class="point__item-two label-box__content-parts-name">フェイスライン</p>
+                                        <p
+                                            class="point-label-box__content-parts-name point-label-box__content-parts-name--two label-box__content-parts-name">
+                                            フェイスライン</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </li>
                     <!-- ポイント3 -->
-                    <li class="point__item-three label-box">
-                        <div class="point__item-three label-box__title">
-                            <h3 class="point__item-one label-box__title-text">POINT3 ｜ 安心のサポート</h3>
+                    <li class="point-label-box point-label-box--three label-box">
+                        <div class="point-label-box__title point-label-box__title--three label-box__title">
+                            <h3
+                                class="point-label-box__title-text point-label-box__title-text--three label-box__title-text">
+                                POINT3 ｜ 安心のサポート</h3>
                         </div>
-                        <div class="point__item-three label-box__content">
-                            <p class="point__item-three label-box__content-text">提携医療機関のサポートがありますので、ご安心ください。
+                        <div class="point-label-box__content point-label-box__content--three label-box__content">
+                            <p
+                                class="point-label-box__content-text point-label-box__content-text--three label-box__content-text">
+                                提携医療機関のサポートがありますので、ご安心ください。
                             </p>
                         </div>
                     </li>
-                </ul>
+                </ol>
             </div>
         </section>
         <!-- カウンセリング -->
@@ -252,33 +296,35 @@
         <section class="course">
             <div class="course__container w-container">
                 <div class="course__title section__title">
-                    <div class="course__title section__title-sub">
-                        <p class="course__title section__title-sub-text">ほかにも選べる！</p>
+                    <div class="course__title-sub section__title-sub">
+                        <p class="course__title-sub-text section__title-sub-text">ほかにも選べる！</p>
                     </div>
-                    <div class="course__title section__title-main">
-                        <h2 class="course__title section__title-main-text">2つのコース</h2>
+                    <div class="course__title-main section__title-main">
+                        <h2 class="course__title-main-text section__title-main-text">2つのコース</h2>
                     </div>
                 </div>
                 <ul class="course__list">
-                    <li class="course__item course__item-one label-box">
-                        <div class="course__item course__item-one label-box__title">
+                    <li class="course-label-box course-label-box--one label-box">
+                        <div class="course-label-box__title course-label-box__title--one label-box__title">
                             <p>ボディコース</p>
                         </div>
-                        <div class="course__item course__item-one label-box__content">
-                            <p class="course__item course__item-one label-box__content-text">
+                        <div class="course-label-box__content course-label-box__content--one label-box__content">
+                            <p
+                                class="course-label-box__content-text courselabel-box__content-text--one label-box__content-text">
                                 ボディケアのスペシャリストが、お客様のお肌を優しく施術いたします。</p>
-                            <img class="course__item course__item-two label-box__content-image"
+                            <img class="course-label-box__content-image courselabel-box__content-image--two label-box__content-image"
                                 src="/assets/image/course_01.jpg" alt="">
                         </div>
                     </li>
-                    <li class="course__item course__item-two label-box">
-                        <div class="course__item course__item-one label-box__title">
+                    <li class="course-label-box course-label-box--two label-box">
+                        <div class="course-label-box__title course-label-box__title--two label-box__title">
                             <p>フェイシャルコース</p>
                         </div>
-                        <div class="course__item course__item-two label-box__content">
-                            <p class="course__item course__item-two label-box__content-text">
+                        <div class="course-label-box__content course-label-box__content--two label-box__content">
+                            <p
+                                class="course-label-box__content-text course-label-box__content-text--two label-box__content-text">
                                 確かな技術を持つエステティシャンが、お客様の理想のお肌に近づけます。</p>
-                            <img class="course__item course__item-two label-box__content-image"
+                            <img class="course-label-box__content-image course-label-box__content-image--two label-box__content-image"
                                 src="/assets/image/course_02.jpg" alt="">
                         </div>
                     </li>
@@ -288,8 +334,8 @@
         <!-- お客様の声 -->
         <section class="voices">
             <div class="voices__container w-container">
-                <div class="voices__title section__title-main">
-                    <h2 class="voices__title section__title-main-text">お客様の声</h2>
+                <div class="voices__title-main section__title-main">
+                    <h2 class="voices__title-main-text section__title-main-text">お客様の声</h2>
                 </div>
                 <!-- swiperスライド -->
                 <div class="voices__swiper-container">
